@@ -11,6 +11,8 @@ public class Bot : MonoBehaviour
 
     private ICollectable _currentTarget;
 
+    private float _minDistanceToStartPosition = 0.3f;
+
     public event Action<Bot> Freed;
 
     public bool HasTarget => _currentTarget != null;
@@ -27,7 +29,7 @@ public class Bot : MonoBehaviour
         {
             _movement.MoveTo(_currentTarget.Position);
         }
-        else if (transform.position.IsCloseToXZ(_startPosition) == false)
+        else if (transform.position.IsCloseToXZ(_startPosition, _minDistanceToStartPosition) == false)
         {
             _movement.MoveTo(_startPosition);
         }
@@ -50,13 +52,13 @@ public class Bot : MonoBehaviour
 
         if (other.TryGetComponent(out Base goldBase))
         {
-            if (_currentTarget != null)
+            if (_currentTarget != null && IsCarrying)
             {
+                goldBase.CollectResource(_currentTarget);
+
                 _currentTarget.Deliver();
                 _currentTarget = null;
                 IsCarrying = false;
-
-                goldBase.CollectGold();
 
                 Freed?.Invoke(this);
             }

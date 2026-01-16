@@ -225,6 +225,8 @@ GameObject:
   - component: {fileID: 5932897128059474302}
   - component: {fileID: 6073017114206101836}
   - component: {fileID: -3532394708807508015}
+  - component: {fileID: 3056683171333183104}
+  - component: {fileID: 879763988326009416}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -340,6 +342,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b7a776e6465974abde94c99c191c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base
+--- !u!114 &3056683171333183104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404503107279517391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5b586ff77e4ee41a5f72188f45fa8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scanner
+  _radius: 30
+  _maxScanResults: 50
+  _goldLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &879763988326009416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5404503107279517391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3ac4280cdefea468914d7b29398524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotSpawner
   _spawnPoints:
   - {fileID: 7143092283623436555}
   - {fileID: 6429093897385387452}

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class Utilities
 {
-    private const float MinDistance = 0.3f;
+    private const float MinDistance = 0.1f;
 
     public static bool IsCloseTo(this Vector3 positionA, Vector3 positionB, float distance = MinDistance)
     {
@@ -14,6 +14,6 @@ public static class Utilities
         positionA.y = 0;
         positionB.y = 0;
 
-        return (positionA - positionB).sqrMagnitude < (distance * distance);
+        return IsCloseTo(positionA, positionB, distance);
     }
 }

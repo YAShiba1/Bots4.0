@@ -1,71 +1,57 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    [SerializeField] private GoldSpawner _goldSpawner;
+    [SerializeField] private float _radius;
+    [SerializeField] private int _maxScanResults = 50;
     [SerializeField] private LayerMask _goldLayerMask;
-    [SerializeField] private float _delay;
 
-    private HashSet<ICollectable> _resources = new();
+    private Collider[] _results;
 
-    public event Action Scanned;
+    public event Action<ICollectable> ResourceDetected;
+
+    private void Awake()
+    {
+        _results = new Collider[_maxScanResults];
+    }
 
     private void Start()
     {
         StartCoroutine(ScanWithDelay());
     }
 
-    public ICollectable GetResource()
+    private void OnDrawGizmosSelected()
     {
-        ICollectable found = null;
-
-        foreach (ICollectable resource in _resources)
-        {
-            if (resource != null && resource.IsBusy == false)
-            {
-                found = resource;
-                resource.Reserve();
-                break;
-            }
-        }
-
-        if (found != null)
-        {
-            _resources.Remove(found);
-        }
-
-        return found;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 
     private IEnumerator ScanWithDelay()
     {
-        var waitForSeconds = new WaitForSeconds(_delay);
+        float delay = 0.5f;
+        var waitForSeconds = new WaitForSeconds(delay);
 
         while (enabled)
         {
-            Scan(_goldSpawner.transform.position, _goldSpawner.Radius);
-            Scanned?.Invoke();
+            Scan();
 
             yield return waitForSeconds;
         }
     }
 
-    private void Scan(Vector3 point, float radius)
+    private void Scan()
     {
-        Collider[] colliders = Physics.OverlapSphere(point, radius, _goldLayerMask);
+        int count = Physics.OverlapSphereNonAlloc(transform.position, _radius, _results, _goldLayerMask);
 
-        foreach (Collider collider in colliders)
+        for (int i = 0; i < count; i++)
         {
-            if (collider.TryGetComponent(out ICollectable resource))
+            if (_results[i].TryGetComponent(out ICollectable resource))
             {
-                if (resource.IsBusy == false)
-                {
-                    _resources.Add(resource);
-                }
+                ResourceDetected?.Invoke(resource);
             }
+
+            _results[i] = null;
         }
     }
 }

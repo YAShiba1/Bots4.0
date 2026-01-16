@@ -25,8 +25,8 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, IPoola
     {
         T item = _pool.Count > 0 ? _pool.Pop() : Create();
 
-        item.gameObject.SetActive(true);
         item.transform.SetPositionAndRotation(position, rotation);
+        item.gameObject.SetActive(true);
         return item;
     }
 
@@ -40,6 +40,7 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour, IPoola
         if (item == null) return;
 
         item.gameObject.SetActive(false);
+        item.transform.position = Vector3.zero;
         item.transform.SetParent(_container);
 
         _pool.Push(item);

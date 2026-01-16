@@ -306,7 +306,7 @@ MonoBehaviour:
   _container: {fileID: 1774241057}
   _spawnPoint: {fileID: 2118816360}
   _botFactory: {fileID: 1139703431}
-  _scanner: {fileID: 1734165534}
+  _resourceManager: {fileID: 1446794513}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,8 +574,8 @@ MonoBehaviour:
   Prefab: {fileID: -7961063817876648928, guid: a8ef7aa454ff29f49874c6aa7481edc4, type: 3}
   _container: {fileID: 806958872}
   _capacity: 3
-  _radius: 20
-  _delay: 1.5
+  _radius: 25
+  _delay: 0.6
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +671,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1734165533
+--- !u!1 &1446794512
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -679,39 +679,34 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1734165535}
-  - component: {fileID: 1734165534}
+  - component: {fileID: 1446794514}
+  - component: {fileID: 1446794513}
   m_Layer: 0
-  m_Name: Scanner
+  m_Name: ResourceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1734165534
+--- !u!114 &1446794513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734165533}
+  m_GameObject: {fileID: 1446794512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5b586ff77e4ee41a5f72188f45fa8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 84086845da7ee59468d09dbc36c27ec2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scanner
-  _goldSpawner: {fileID: 806958873}
-  _goldLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _delay: 0.5
---- !u!4 &1734165535
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
+--- !u!4 &1446794514
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734165533}
+  m_GameObject: {fileID: 1446794512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -792,5 +787,5 @@ SceneRoots:
   - {fileID: 428343550}
   - {fileID: 392010669}
   - {fileID: 1139703432}
-  - {fileID: 1734165535}
   - {fileID: 806958872}
+  - {fileID: 1446794514}
